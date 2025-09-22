@@ -85,8 +85,8 @@ def main(text_column='text',target_column='target'):
     '''
     try:
         #Fetch the data from data/raw
-        train_data = pd.read_csv('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/data/raw/test_csv')
-        test_data = pd.read_csv('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/data/raw/test_csv')
+        train_data = pd.read_csv('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/MLOPs_complete_ML/data/raw/train_csv')
+        test_data = pd.read_csv('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/MLOPs_complete_ML/data/raw/test_csv')
         logger.debug('Data loaded properly')
         
         #Transform the data

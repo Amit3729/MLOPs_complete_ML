@@ -97,8 +97,8 @@ def main():
         # max_features = params['feature_engineering']['max_features']
         max_features = 50
 
-        train_data = load_data('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/data/interim/train_processed_csv')
-        test_data = load_data('/home/amit/Desktop/MLops/MLOPPs_MLpipeline/data/interim/test_processed_csv')
+        train_data = load_data('data/interim/train_processed_csv')
+        test_data = load_data('data/interim/test_processed_csv')
 
         train_df, test_df = apply_tfidf(train_data, test_data, max_features)
 
