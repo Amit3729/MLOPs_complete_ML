@@ -26,21 +26,22 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-# def load_data(file_path: str) -> dict:
-#     """Load data from a CSV file."""
-#     try:
-#         df = pd. read_csv(file_path)
-#         logger.debug('Data loaded and NaNs filled from %s', file_path)
-#         return df
-#     # except FileNotFoundError:
-#     #     logger.error('File not found: %s', file_path)
-#     #     raise
-#     except pd.errors.ParserError as e:
-#         logger.error('YAML error: %s', e)
-#         raise
-#     except Exception as e:
-#         logger.error('Unexpected error: %s', e)
-#         raise
+def load_params(params_path: str) -> dict:
+    """Load parameters from a YAML file."""
+    try:
+        with open(params_path, 'r') as file:
+            params = yaml.safe_load(file)
+        logger.debug('Data loaded and NaNs filled from %s', params_path)
+        return params
+    except FileNotFoundError:
+        logger.error('File not found: %s', params_path)
+        raise
+    except yaml.YAMLError as e:
+        logger.error('YAML error: %s', e)
+        raise
+    except Exception as e:
+        logger.error('Unexpected error: %s', e)
+        raise
 
 def load_data(file_path: str) -> pd.DataFrame:
     """Load data from a CSV file."""
@@ -93,15 +94,15 @@ def save_data(df: pd.DataFrame, file_path: str) -> None:
 
 def main():
     try:
-        # params = load_params(params_path='params.yaml')
-        # max_features = params['feature_engineering']['max_features']
-        max_features = 50
+        params = load_params(params_path='params.yaml')
+        max_features = params['feature_engineering']['max_features']
+        # max_features = 50
 
         train_data = load_data('data/interim/train_processed_csv')
         test_data = load_data('data/interim/test_processed_csv')
 
         train_df, test_df = apply_tfidf(train_data, test_data, max_features)
-
+     
         save_data(train_df, os.path.join("./data", "processed", "train_tfidf.csv"))
         save_data(test_df, os.path.join("./data", "processed", "test_tfidf.csv"))
     except Exception as e:
