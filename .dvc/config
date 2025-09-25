@@ -1,0 +1,4 @@
+[core]
+    remote = dvcstire
+['remote "dvcstire"']
+    url = s3://dvc-s3-project7
