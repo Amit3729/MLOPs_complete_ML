@@ -15,3 +15,11 @@ Setting up dvc pipeline (with params)
 10. Do 'dvc repro' again to test the pipeline along with params
 11. Now git add, commit, push
 
+Experiment with DVC :
+12. pip install dvclive(if not used first time)
+13. add the dvclive code block
+14. Do 'dvc exp run' it will Create a new dvc.yaml(if already not there) and dvc directory(each run will be considered as experiment by dvc)
+15. Do'dvc exp show' on terminal to see the experiment or use extension on vscode 
+16. Do 'dvc exp remove {exp-name}' ro remove exp(optional) | 'dvc exp apply {exp-name}' to reproduce any prev exp
+17. Change params, re run code (produce new experiment)
+18. Now git add, commit, and push 
